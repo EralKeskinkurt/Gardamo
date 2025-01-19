@@ -59,8 +59,8 @@ export default function Header() {
   ];
 
   return (
-    <header className="container mx-auto w-full h-screen">
-      <div className="w-full max-h-[43rem] grid grid-cols-2 gap-10 items-start justify-center p-10">
+    <header className="container mx-auto w-full max-h-screen">
+      <div className="w-full max-h-[43rem] grid grid-cols-2 gap-10 items-start justify-center p-16 px-10">
         <div className="h-full bg-orange-400 overflow-hidden rounded-lg">
           <Image
             src="https://plus.unsplash.com/premium_photo-1672883551967-ab11316526b4"

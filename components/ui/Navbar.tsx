@@ -8,7 +8,7 @@ import { TiShoppingCart } from "react-icons/ti";
 export default function Navbar() {
   return (
     <nav className="w-full bg-background/80 sticky top-0 right-0 z-50">
-      <div className="w-full container mx-auto pr-14 flex justify-between items-center">
+      <div className="w-full container mx-auto flex justify-between items-center px-10">
         <Image src={GardamoLogo} alt="Gardamo Logo" />
         <ul className="flex items-center gap-4">
           <li>
