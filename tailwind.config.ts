@@ -9,8 +9,11 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        primary: '#2E3A8C',       // Deep Blue
+        secondary: '#F4A300',     // Warm Yellow
+        accent: '#D1E8E2',        // Soft Aqua
+        background: '#F5F5F5',    // Light Gray
+        text: '#333333',          // Dark Charcoal
       },
     },
   },

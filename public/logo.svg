@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 100" width="260" height="100">
+  
+  <!-- "Gardamo" Yazısı -->
+  <text x="0" y="60" font-family="'Montserrat', sans-serif" font-size="48" fill="#2E3A8C" font-weight="bold">
+    Gardamo
+  </text>
+  
+  <!-- Alt Çizgi -->
+  <line x1="0" y1="70" x2="230" y2="70"  stroke="#F4A300" stroke-width="7"/>
+</svg>

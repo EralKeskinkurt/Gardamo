@@ -1,0 +1,5 @@
+Primary Color: #2E3A8C (Deep Blue)
+Secondary Color: #F4A300 (Warm Yellow)
+Accent Color: #D1E8E2 (Soft Aqua)
+Background Color: #F5F5F5 (Light Gray)
+Text Color: #333333 (Dark Charcoal)
