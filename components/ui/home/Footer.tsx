@@ -4,7 +4,7 @@ import GardamoLogo from "@/public/logo.svg";
 export default function Footer() {
   return (
     <footer className=" bg-accent text-text  w-full pt-24 pb-10">
-      <div className="container mx-auto flex flex-wrap items-center gap-16 justify-between px-10">
+      <div className="container mx-auto flex flex-wrap items-center gap-16 justify-between px-10 max-md:px-5 w-full">
         <div className="md:w-1/4">
           <div>
             <Image src={GardamoLogo} alt="Gardamo Logo" className="w-64 h-32" />
@@ -81,7 +81,7 @@ export default function Footer() {
             </li>
           </ul>
         </div>
-        <div className="max-sm:w-1/4">
+        <div className="max-sm:w-4/4">
           <h3 className="text-blue-900 text-lg font-semibold mb-4">
             Newsletter
           </h3>

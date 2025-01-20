@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/ui/Navbar";
+import MobileNav from "@/components/ui/MobileNav";
 
 export const metadata: Metadata = {
   title: "Gardamo",
@@ -17,6 +18,7 @@ export default function RootLayout({
       <body className="bg-background">
         <div className="relative w-full">
           <Navbar />
+          <MobileNav />
           {children}
         </div>
       </body>

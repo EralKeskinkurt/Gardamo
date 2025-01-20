@@ -1,16 +1,19 @@
-import Image from "next/image";
-import GardamoLogo from "../../public/logo.svg";
 import Link from "next/link";
 import Button from "../common/Button";
-import { IoIosBasket } from "react-icons/io";
 import { TiShoppingCart } from "react-icons/ti";
-
-export default function Navbar() {
+import { IoIosBasket } from "react-icons/io";
+import GardomoLogo from "@/public/logo.svg";
+import Image from "next/image";
+export default function MobileNav() {
   return (
-    <nav className="w-full bg-background/80 sticky top-0 right-0 z-50 max-lg:hidden">
-      <div className="w-full container mx-auto flex justify-between items-center px-10">
-        <Image src={GardamoLogo} alt="Gardamo Logo" />
-        <ul className="flex items-center gap-4">
+    <nav className="w-full bg-background/80 sticky top-0 right-0 z-50 hidden max-lg:block">
+      <div className="w-full container mx-auto flex justify-between items-center px-10 max-md:px-5">
+        <Image
+          src={GardomoLogo}
+          alt="Gardamo Logo"
+          className="max-lg:w-64 max-md:w-52 max-sm:w-40"
+        />
+        <ul className="hidden items-center gap-4">
           <li>
             <Button className="bg-primary text-white hover:bg-white hover:text-text border-2 text-sm border-primary font-medium">
               <Link href={"/"}>Home</Link>

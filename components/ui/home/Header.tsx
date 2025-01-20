@@ -59,19 +59,19 @@ export default function Header() {
   ];
 
   return (
-    <header className="container mx-auto w-full max-h-screen">
-      <div className="w-full max-h-[43rem] grid grid-cols-2 gap-10 items-start justify-center p-16 px-10">
+    <header className="container mx-auto w-full">
+      <div className="w-full  grid grid-cols-2 max-xl:grid-cols-1 gap-10 items-start justify-center pt-16 max-md:pt-7 px-10 max-md:px-5">
         <div className="h-full bg-orange-400 overflow-hidden rounded-lg">
           <Image
             src="https://plus.unsplash.com/premium_photo-1672883551967-ab11316526b4"
             alt="header section image"
-            width={1000}
-            height={1000}
+            width={500}
+            height={500}
             className="w-full h-full object-cover"
           />
         </div>
         <div className="h-full w-full">
-          <ul className="w-full grid grid-cols-3 grid-rows-2 h-full gap-2">
+          <ul className="w-full grid grid-cols-3 max-md:grid-cols-2 grid-rows-2 h-full gap-2">
             {productsList.map((p, i) => {
               return (
                 <li
@@ -108,9 +108,6 @@ export default function Header() {
                       <span className="flex-1 text-lg text-text font-light">
                         ${p.price}.00
                       </span>
-                      <Button className="bg-secondary text-text font-semibold hover:brightness-90 hover:text-text border-2 border-secondary text-xs">
-                        Add cart
-                      </Button>
                     </div>
                   </div>
                 </li>

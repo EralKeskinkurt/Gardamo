@@ -3,7 +3,7 @@ import CampaignImage from "@/public/campaign-image.png";
 
 export default function CampaignSection() {
   return (
-    <section className="container mx-auto max-h-screen w-full px-10 py-32">
+    <section className="container mx-auto w-full px-10 max-md:px-5 py-32 max-md:py-16">
       <div className="rounded-xl h-72 m-auto w-full relative overflow-hidden">
         <Image
           src={CampaignImage}
