@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -6,4 +7,36 @@
 *{
     font-family: "Montserrat", serif;
     font-optical-sizing: auto;
+}
+
+::selection {
+    background-color: #2E3A8C; 
+    color: #F5F5F5;          
+}
+
+.swiper-button-prev:after, 
+.swiper-button-next:after{
+    font-size: 0.9rem !important;
+    font-weight: 900 !important;
+    color: #2E3A8C;
+}
+
+.swiper-button-prev:hover:after, 
+.swiper-button-next:hover:after{
+    color: white !important;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+    background-color: #F5F5F5;
+    border-radius: 100%;
+    width: 2.3rem !important;
+    height: 2.3rem !important;
+    transition: all 0.2s;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.189);
+}
+
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+    background-color: #F4A300;
 }
