@@ -16,7 +16,7 @@ export default function PopularProduct() {
       navigation
       onSwiper={(swiper) => console.log(swiper)}
       onSlideChange={() => console.log("slide change")}
-      className="w-full flex-1"
+      className="w-full group-focus-within:flex-1"
     >
       <SwiperSlide className="bg-accent h-full flex items-center border border-text/50 rounded-md overflow-hidden">
         <Image

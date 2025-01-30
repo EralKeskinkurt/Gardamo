@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/ui/Navbar";
 import MobileNav from "@/components/ui/MobileNav";
+import Footer from "@/components/ui/home/Footer";
 
 export const metadata: Metadata = {
   title: "Gardamo",
@@ -20,6 +21,7 @@ export default function RootLayout({
           <Navbar />
           <MobileNav />
           {children}
+          <Footer />
         </div>
       </body>
     </html>

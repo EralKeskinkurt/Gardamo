@@ -5,6 +5,8 @@ import Button from "../common/Button";
 import { IoIosBasket } from "react-icons/io";
 import { TiShoppingCart } from "react-icons/ti";
 import SearchInput from "../common/SearchInput";
+import CategoriesDropdown from "./CategoriesDropdown";
+import { IoMdArrowDropdown } from "react-icons/io";
 
 export default function Navbar() {
   return (
@@ -24,10 +26,15 @@ export default function Navbar() {
               <TiShoppingCart />
             </Button>
           </li>
-          <li>
-            <Button className="bg-primary text-white hover:bg-white hover:text-text border-2 text-sm border-primary font-medium">
-              <Link href={"/"}>Categories</Link>
+          <li className="group relative">
+            <Button className="bg-primary text-white group-hover:bg-white group-hover:text-text border-2 text-sm border-primary font-medium flex items-center gap-1.5">
+              Categories{" "}
+              <IoMdArrowDropdown
+                size={20}
+                className="group-hover:rotate-180 transition-transform"
+              />
             </Button>
+            <CategoriesDropdown />
           </li>
           <li>
             <Button className="bg-primary text-white hover:bg-white hover:text-text border-2 text-sm border-primary font-medium flex items-center gap-1.5">

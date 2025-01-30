@@ -1,5 +1,4 @@
 import CampaignSection from "@/components/ui/home/CampaignSection";
-import Footer from "@/components/ui/home/Footer";
 import Header from "@/components/ui/home/Header";
 import ProductSection from "@/components/ui/home/ProductSection";
 
@@ -9,7 +8,6 @@ export default function Home() {
       <Header />
       <CampaignSection />
       <ProductSection />
-      <Footer />
     </div>
   );
 }

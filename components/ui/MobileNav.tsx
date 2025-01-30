@@ -4,6 +4,7 @@ import { TiShoppingCart } from "react-icons/ti";
 import { IoIosBasket } from "react-icons/io";
 import GardomoLogo from "@/public/logo.svg";
 import Image from "next/image";
+
 export default function MobileNav() {
   return (
     <nav className="w-full bg-background/80 sticky top-0 right-0 z-50 hidden max-lg:block">

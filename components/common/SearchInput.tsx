@@ -1,6 +1,6 @@
 import { FaSearch } from "react-icons/fa";
 import { FcRating } from "react-icons/fc";
-import PopularProduct from "./PopularProduct";
+import PopularProduct from "../ui/PopularProduct";
 
 export default function Input() {
   return (
