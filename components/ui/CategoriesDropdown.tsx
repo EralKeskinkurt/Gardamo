@@ -10,8 +10,6 @@ export default function CategoriesDropdown() {
     <div className="absolute top-9 right-0 p-2 bg-transparent group-hover:flex w-[40rem] h-[25rem] hidden">
       <div className="flex shadow-md rounded-lg overflow-hidden w-full h-full">
         <ul
-          onMouseEnter={() => setActive(true)}
-          onMouseLeave={() => setActive(false)}
           className={`grid grid-cols-3 gap-1 items-start bg-white w-full h-full p-3.5 z-20`}
         >
           {categoryData.map((c) => {

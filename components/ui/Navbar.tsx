@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import GardamoLogo from "../../public/logo.svg";
 import Link from "next/link";
@@ -7,10 +8,30 @@ import { TiShoppingCart } from "react-icons/ti";
 import SearchInput from "../common/SearchInput";
 import CategoriesDropdown from "./CategoriesDropdown";
 import { IoMdArrowDropdown } from "react-icons/io";
+import DefaultModal from "../common/DefaultModal";
+import LoginForm from "./home/LoginForm";
+import { useState } from "react";
+import RegisterForm from "./home/RegisterForm";
 
 export default function Navbar() {
+  const [whichForm, setWhichForm] = useState<string>("");
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+
+  const handleSetWhichForm = (whichFormData: string) => {
+    setWhichForm(whichFormData);
+
+    if (whichFormData === "") {
+      setIsModalOpen(false);
+    }
+  };
+
+  const handleSetIsModalOpen = (isModalOpenData: boolean) => {
+    setWhichForm("");
+    setIsModalOpen(isModalOpenData);
+  };
+
   return (
-    <nav className="w-full bg-background/80 sticky top-0 right-0 z-50 max-lg:hidden">
+    <nav className="w-full bg-background/80 sticky top-0 right-0 z-10 max-lg:hidden">
       <div className="w-full container mx-auto flex justify-between items-center px-10">
         <Image src={GardamoLogo} alt="Gardamo Logo" />
         <SearchInput />
@@ -43,9 +64,24 @@ export default function Navbar() {
             </Button>
           </li>
           <li>
-            <Button className="bg-secondary text-text hover:bg-white border-2 text-sm border-secondary font-medium">
-              <Link href={"/login"}>Login / Register</Link>
+            <Button
+              onClick={() => {
+                handleSetWhichForm("login-form");
+                setIsModalOpen(true);
+              }}
+              className="bg-secondary text-text hover:bg-white border-2 text-sm border-secondary font-medium"
+            >
+              Login / Register
             </Button>
+            {isModalOpen && (
+              <DefaultModal handleSetIsModalOpen={handleSetIsModalOpen}>
+                {whichForm === "login-form" ? (
+                  <LoginForm handleSetWhichForm={handleSetWhichForm} />
+                ) : (
+                  <RegisterForm handleSetWhichForm={handleSetWhichForm} />
+                )}
+              </DefaultModal>
+            )}
           </li>
         </ul>
       </div>
