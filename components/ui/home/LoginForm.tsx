@@ -1,13 +1,14 @@
 "use client";
+import Button from "@/components/common/Button";
 import { useForm } from "react-hook-form"; // Doğru import
+
+interface Props {
+  handleSetWhichForm: (newWhichForm: string) => void;
+}
 
 interface FormData {
   email: string;
   password: string;
-}
-
-interface Props {
-  handleSetWhichForm: (newWhichForm: string) => void;
 }
 
 export default function LoginForm({ handleSetWhichForm }: Props) {
@@ -27,7 +28,7 @@ export default function LoginForm({ handleSetWhichForm }: Props) {
       className="text-text flex flex-col items-start justify-center p-2 z-50"
     >
       <div className="flex flex-col items-start gap-0.5 w-full">
-        <label>Email: </label>
+        <label>E-mail </label>
         <input
           {...register("email", { required: "E-mail is required" })}
           type="email"
@@ -42,7 +43,7 @@ export default function LoginForm({ handleSetWhichForm }: Props) {
         </p>
       </div>
       <div className="flex flex-col items-start gap-0.5 mt-2.5 w-full">
-        <label>Password: </label>
+        <label>Password </label>
         <input
           {...register("password", { required: "Password is required" })}
           type="password"
@@ -59,12 +60,9 @@ export default function LoginForm({ handleSetWhichForm }: Props) {
       <span className="text-xs flex items-center gap-2 mt-1">
         <input type="checkbox" /> Remember me
       </span>
-      <button
-        type="submit"
-        className="bg-accent border-2 transition-all border-accent hover:bg-white rounded-full px-5 py-1.5 mt-3"
-      >
+      <Button className="bg-accent border-2 transition-all border-accent hover:bg-white rounded-full px-5 py-1.5 mt-3">
         Login
-      </button>
+      </Button>
       <p className="text-sm mt-3">
         Don&apos;t you have an account on Gardamo yet?
         <span

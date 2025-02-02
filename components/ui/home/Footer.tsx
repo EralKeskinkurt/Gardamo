@@ -23,12 +23,12 @@ export default function Footer() {
           <ul className="space-y-2">
             <li>
               <a href="#" className="hover:text-yellow-500">
-                Women's Clothing
+                Women&apos;s Clothing
               </a>
             </li>
             <li>
               <a href="#" className="hover:text-yellow-500">
-                Men's Clothing
+                Men&apos;s Clothing
               </a>
             </li>
             <li>
@@ -91,7 +91,7 @@ export default function Footer() {
           <form className="flex">
             <input
               type="email"
-              placeholder="E-posta adresiniz"
+              placeholder="Enter an e-mail"
               className="w-full px-3 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-yellow-500"
             />
             <button

@@ -1,14 +1,10 @@
 "use client";
-import Image from "next/image";
 import DefaultImage from "@/public/default-image.png";
-import { GoHeart } from "react-icons/go";
-import { GoHeartFill } from "react-icons/go";
-import { useState } from "react";
 import Button from "@/components/common/Button";
 import Product from "./Product";
 
 export default function ProductSection() {
-  let productsList = [
+  const productsList = [
     {
       name: "Product-1",
       description:

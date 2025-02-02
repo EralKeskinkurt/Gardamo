@@ -40,3 +40,23 @@
 .swiper-button-next:hover {
     background-color: #F4A300;
 }
+
+/* width */
+::-webkit-scrollbar {
+    width: 2px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #33333341;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #D1E8E2;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #D1E8E2;
+  }

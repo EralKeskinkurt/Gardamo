@@ -1,5 +1,5 @@
 "use client";
-import { categoryData } from "@/app/categories";
+import { categoryData } from "@/data/dummy-data/categories";
 import { useState } from "react";
 
 export default function CategoriesDropdown() {

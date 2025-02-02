@@ -43,7 +43,7 @@ export default function Navbar() {
           </li>
           <li>
             <Button className="bg-primary text-white hover:bg-white hover:text-text border-2 text-sm border-primary font-medium flex items-center gap-1.5">
-              <Link href={"/"}>Shop</Link>
+              <Link href={"/shop"}>Shop</Link>
               <TiShoppingCart />
             </Button>
           </li>

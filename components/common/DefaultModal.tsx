@@ -1,3 +1,5 @@
+import { IoIosClose } from "react-icons/io";
+
 interface Props {
   children: React.ReactNode;
   handleSetIsModalOpen: (newBooleanData: boolean) => void;
@@ -13,8 +15,10 @@ export default function DefaultModal({
     >
       <div
         onClick={() => handleSetIsModalOpen(false)}
-        className="bg-background/40 absolute w-full h-full"
-      ></div>
+        className="bg-background/40 absolute w-full h-full flex items-start justify-end"
+      >
+        <IoIosClose size={65} className="cursor-pointer text-text" />
+      </div>
       <div className="w-auto h-auto bg-white rounded-md text-white shadow-md p-3.5 relative z-10">
         {children}
       </div>
