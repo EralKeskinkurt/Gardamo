@@ -3,11 +3,9 @@ import Image from "next/image";
 import DefaultImage from "@/public/default-image.png";
 import { GoHeart } from "react-icons/go";
 import { GoHeartFill } from "react-icons/go";
-import { useState } from "react";
-import Button from "@/components/common/Button";
 
 export default function Header() {
-  let productsList = [
+  const productsList = [
     {
       name: "Product-1",
       description:

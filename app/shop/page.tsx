@@ -2,10 +2,10 @@ import ProductSection from "@/components/ui/shop/ProductSection";
 import FiltersSection from "@/components/ui/shop/FiltersSection";
 import BrandFilter from "@/components/ui/shop/filters/BrandFilter";
 import BodyFilter from "@/components/ui/shop/filters/BodyFilter";
-import StyleFilter from "@/components/ui/shop/filters/StyleFilter";
 import ColorFilter from "@/components/ui/shop/filters/ColorFilter";
 import PriceRangeFilter from "@/components/ui/shop/filters/PriceRangeFilter";
 import SellerFilter from "@/components/ui/shop/filters/SellerFİlter";
+import CollarType from "@/components/ui/shop/filters/CollarType";
 
 export default function page() {
   return (
@@ -14,7 +14,7 @@ export default function page() {
         <PriceRangeFilter />
         <BrandFilter />
         <BodyFilter />
-        <StyleFilter />
+        <CollarType />
         <ColorFilter />
         <SellerFilter />
       </FiltersSection>

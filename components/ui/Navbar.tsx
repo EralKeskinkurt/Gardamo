@@ -2,7 +2,6 @@
 import Image from "next/image";
 import GardamoLogo from "../../public/logo.svg";
 import Link from "next/link";
-import Button from "../common/Button";
 import { IoIosBasket } from "react-icons/io";
 import { TiShoppingCart } from "react-icons/ti";
 import SearchInput from "../common/SearchInput";
@@ -12,6 +11,7 @@ import DefaultModal from "../common/DefaultModal";
 import LoginForm from "./home/LoginForm";
 import { useState } from "react";
 import RegisterForm from "./home/RegisterForm";
+import Button from "../common/Button";
 
 export default function Navbar() {
   const [whichForm, setWhichForm] = useState<string>("");
@@ -37,15 +37,21 @@ export default function Navbar() {
         <SearchInput />
         <ul className="flex items-center gap-4">
           <li>
-            <Button className="bg-primary text-white hover:bg-white hover:text-text border-2 text-sm border-primary font-medium">
-              <Link href={"/"}>Home</Link>
-            </Button>
+            <Link
+              href={"/"}
+              className="bg-primary text-white hover:bg-white hover:text-text border-2 text-sm border-primary font-medium rounded-3xl px-4 py-1.5 transition-all"
+            >
+              <span>Home</span>
+            </Link>
           </li>
           <li>
-            <Button className="bg-primary text-white hover:bg-white hover:text-text border-2 text-sm border-primary font-medium flex items-center gap-1.5">
-              <Link href={"/shop"}>Shop</Link>
+            <Link
+              href={"/shop"}
+              className="bg-primary text-white hover:bg-white hover:text-text border-2 text-sm border-primary font-medium flex items-center gap-1.5 rounded-3xl px-4 py-1.5 transition-all"
+            >
+              <span>Shop</span>
               <TiShoppingCart />
-            </Button>
+            </Link>
           </li>
           <li className="group relative">
             <Button className="bg-primary text-white group-hover:bg-white group-hover:text-text border-2 text-sm border-primary font-medium flex items-center gap-1.5">
@@ -58,10 +64,13 @@ export default function Navbar() {
             <CategoriesDropdown />
           </li>
           <li>
-            <Button className="bg-primary text-white hover:bg-white hover:text-text border-2 text-sm border-primary font-medium flex items-center gap-1.5">
-              <Link href={"/"}>Cart</Link>
+            <Link
+              href={"/"}
+              className="bg-primary text-white hover:bg-white hover:text-text border-2 text-sm border-primary font-medium flex items-center gap-1.5 rounded-3xl px-4 py-1.5 transition-all"
+            >
+              <span>Cart</span>
               <IoIosBasket />
-            </Button>
+            </Link>
           </li>
           <li>
             <Button

@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { IoMdArrowDropdown } from "react-icons/io";
-export default function BodyFilter() {
+export default function CollarType() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -11,7 +11,7 @@ export default function BodyFilter() {
         onClick={() => setIsOpen(!isOpen)}
         className="w-full bg-accent/20 flex items-center justify-between p-3 text-text text-sm font-semibold cursor-pointer"
       >
-        Bodys{" "}
+        Collar Type{" "}
         <IoMdArrowDropdown
           className={`transition-transform ${
             isOpen ? "rotate-180" : "rotate-0"
