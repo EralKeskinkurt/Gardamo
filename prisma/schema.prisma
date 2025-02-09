@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -16,57 +10,122 @@ datasource db {
 model User {
   id            Int            @id @default(autoincrement())
   email         String         @unique
-  name          String
-  surname       String
-  password      String
+  name_surname  String
+  password      String         @map("hashed_password")
   birth_date    DateTime
-  phone_number  String
+  phone_number  String         @unique
   address       String?
   image         String?
   role          Role           @default(USER)
   createdAt     DateTime       @default(now())
   updatedAt     DateTime       @updatedAt
   sellerCompany SellerCompany?
+  Order         Order[]
+  Review        Review[]
 }
 
 model SellerCompany {
   id        Int       @id @default(autoincrement())
   name      String
   address   String
-  phone     String
+  phone     String    @unique
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   owner     User      @relation(fields: [ownerId], references: [id])
   ownerId   Int       @unique
-  products  Product[] // Şirkete ait ürünler
+  products  Product[]
 }
 
 model Category {
   id            Int        @id @default(autoincrement())
-  name          String
+  name          String     @unique
   parentId      Int?
   parent        Category?  @relation("CategoryToCategory", fields: [parentId], references: [id])
   subcategories Category[] @relation("CategoryToCategory")
-
-  products Product[] // Kategorideki ürünler
+  products      Product[]
 }
 
 model Product {
   id              Int            @id @default(autoincrement())
   name            String
   price           Float
-  rating          Float?
+  rating          Float?         @default(0.0) // Ortalama puanı hesaplayacağız
+  ratingCount     Int            @default(0) // Kaç kişi puan verdi
   description     String?
-  colors          String
-  image           String
+  colors          Json
+  image           Json
   categoryId      Int
   category        Category       @relation(fields: [categoryId], references: [id])
   SellerCompany   SellerCompany? @relation(fields: [sellerCompanyId], references: [id])
   sellerCompanyId Int?
+  reviews         Review[] // Ürün yorumları
+  OrderItem       OrderItem[]
+}
+
+model Order {
+  id          Int         @id @default(autoincrement())
+  user        User        @relation(fields: [userId], references: [id])
+  userId      Int
+  totalAmount Float
+  status      OrderStatus @default(PENDING) // Siparişin durumu
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  orderItems  OrderItem[]
+  payment     Payment?
+}
+
+model OrderItem {
+  id        Int     @id @default(autoincrement())
+  order     Order   @relation(fields: [orderId], references: [id])
+  orderId   Int
+  product   Product @relation(fields: [productId], references: [id])
+  productId Int
+  quantity  Int
+  price     Float
+}
+
+model Payment {
+  id        Int           @id @default(autoincrement())
+  order     Order         @relation(fields: [orderId], references: [id])
+  orderId   Int           @unique
+  amount    Float
+  method    PaymentMethod
+  status    PaymentStatus @default(PENDING)
+  createdAt DateTime      @default(now())
+}
+
+model Review {
+  id        Int      @id @default(autoincrement())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int
+  product   Product  @relation(fields: [productId], references: [id])
+  productId Int
+  rating    Int // 1 ile 5 arasında puan (yıldız)
+  comment   String?
+  createdAt DateTime @default(now())
 }
 
 enum Role {
   USER
   ADMIN
   SELLER
+}
+
+enum OrderStatus {
+  PENDING // Beklemede
+  SHIPPED // Kargoya verildi
+  DELIVERED // Teslim edildi
+  CANCELED // İptal edildi
+}
+
+enum PaymentMethod {
+  CREDIT_CARD
+  PAYPAL
+  BANK_TRANSFER
+}
+
+enum PaymentStatus {
+  PENDING
+  COMPLETED
+  FAILED
 }
