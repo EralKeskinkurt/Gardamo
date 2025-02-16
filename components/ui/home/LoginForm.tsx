@@ -1,6 +1,10 @@
 "use client";
 import Button from "@/components/common/Button";
-import { useForm } from "react-hook-form"; // Doğru import
+import { authLogin } from "@/lib/authService";
+import { loginSchema } from "@/validations/authSchema";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
 
 interface Props {
   handleSetWhichForm: (newWhichForm: string) => void;
@@ -12,14 +16,32 @@ interface FormData {
 }
 
 export default function LoginForm({ handleSetWhichForm }: Props) {
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormData>();
+  } = useForm<FormData>({
+    resolver: zodResolver(loginSchema),
+  });
 
-  const onSubmit = (data: FormData) => {
-    console.log(data);
+  const onSubmit = async (data: FormData) => {
+    try {
+      const role = await authLogin(data);
+      console.log(role);
+      if (role === "USER") {
+        router.push("/");
+      } else if (role === "SELLER") {
+        router.push("/seller");
+      } else if (role === "ADMIN") {
+        router.push("/admin");
+      }
+
+      handleSetWhichForm("");
+    } catch (error) {
+      return error;
+    }
   };
 
   return (

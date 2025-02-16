@@ -87,3 +87,66 @@
       margin: 0;
     }
   }
+
+  .unauthorized-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #2c2c2c; /* Koyu gri arka plan */
+    color: white;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .unauthorized-icon {
+    font-size: 4rem;
+    margin-bottom: 10px;
+    color: #d32f2f; /* Koyu kırmızı yasak ikonu */
+    animation: blink 1.5s infinite alternate;
+  }
+  
+  .unauthorized-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #d32f2f; /* Koyu kırmızı yasak yazısı */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+  
+  .unauthorized-text {
+    font-size: 1.2rem;
+    color: #e0e0e0; /* Açık gri metin */
+    margin-top: 10px;
+    max-width: 500px;
+  }
+  
+  .unauthorized-button {
+    margin-top: 20px;
+    padding: 12px 24px;
+    background-color: #616161; /* Koyu gri buton */
+    color: white;
+    border-radius: 8px;
+    font-weight: bold;
+    text-decoration: none;
+    border: 2px solid #d32f2f; /* Koyu kırmızı sınır */
+    transition: background 0.3s, transform 0.2s;
+  }
+  
+  .unauthorized-button:hover {
+    background-color: #757575; /* Hover efektinde daha açık gri */
+    transform: scale(1.05);
+  }
+  
+  /* Yanıp sönen uyarı efekti */
+  @keyframes blink {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0.5;
+    }
+  }
+  
+  

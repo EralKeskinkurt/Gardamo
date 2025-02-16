@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import "./globals.css";
+import "../globals.css";
 import Navbar from "@/components/ui/Navbar";
 import MobileNav from "@/components/ui/MobileNav";
 import Footer from "@/components/ui/home/Footer";
@@ -11,16 +11,16 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
       <body className="bg-background">
         <div className="relative w-full h-full">
           <Navbar />
           <MobileNav />
-          {children}
+          <main>{children}</main>
           <Footer />
         </div>
       </body>
