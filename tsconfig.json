@@ -24,4 +24,5 @@
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/(admin)/admin/page.tsx"],
   "exclude": ["node_modules"]
+  
 }

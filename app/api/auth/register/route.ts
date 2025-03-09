@@ -14,6 +14,8 @@ export async function POST(
 
             const { password, email, birth_date, ...user }: User = await req.json();
 
+            console.log(user)
+
             const isoDate = new Date(birth_date).toISOString()
 
             const anyUser = await prisma.user.findUnique({
@@ -38,7 +40,7 @@ export async function POST(
             })
 
 
-            const token = jwtSign(createUser.id, process.env.JWT_SECRET, createUser.role);
+            const token = await jwtSign(createUser.id, process.env.JWT_SECRET, createUser.role);
 
             await prisma.user.updateMany({ where: { email: createUser.email }, data: { refresh_token: token.jwtRefresh } })
 
@@ -46,7 +48,7 @@ export async function POST(
                 where: { email: email },
             });
 
-            const response = Response.json({ message: "User created successfully", user: newUser }, { status: 200 });
+            const response = Response.json({ message: "User created successfully", newUser }, { status: 200 });
 
             response.headers.append("Set-Cookie", `access_token=${token.jwtAccess}; Path=/; HttpOnly; Secure; SameSite=Strict; Max-Age=3600`);
 

@@ -1,6 +1,7 @@
 "use client";
 import Button from "@/components/common/Button";
 import { authLogin } from "@/lib/authService";
+import { authStore } from "@/store/authStore";
 import { loginSchema } from "@/validations/authSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
@@ -17,6 +18,7 @@ interface FormData {
 
 export default function LoginForm({ handleSetWhichForm }: Props) {
   const router = useRouter();
+  const setUser = authStore((state) => state.setUser);
 
   const {
     register,
@@ -26,16 +28,20 @@ export default function LoginForm({ handleSetWhichForm }: Props) {
     resolver: zodResolver(loginSchema),
   });
 
-  const onSubmit = async (data: FormData) => {
+  const onSubmit = async (formData: FormData) => {
     try {
-      const role = await authLogin(data);
-      console.log(role);
-      if (role === "USER") {
-        router.push("/");
-      } else if (role === "SELLER") {
-        router.push("/seller");
-      } else if (role === "ADMIN") {
-        router.push("/admin");
+      const result = await authLogin(formData);
+
+      if (result.user) {
+        await setUser(result?.user);
+
+        if (result?.user.role === "USER") {
+          router.push("/");
+        } else if (result?.user.role === "SELLER") {
+          router.push("/seller");
+        } else if (result?.user.role === "ADMIN") {
+          router.push("/admin");
+        }
       }
 
       handleSetWhichForm("");

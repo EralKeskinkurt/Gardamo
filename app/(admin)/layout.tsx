@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "../globals.css";
+import AuthProvider from "@/components/provider/AuthProvider";
 
 export const metadata: Metadata = {
   title: "Gardamo Admin",
@@ -14,7 +15,9 @@ export default function AdminLayout({
   return (
     <html lang="en">
       <body>
-        <div className="relative w-full h-full">{children}</div>
+        <AuthProvider>
+          <div className="relative w-full h-full">{children}</div>
+        </AuthProvider>
       </body>
     </html>
   );

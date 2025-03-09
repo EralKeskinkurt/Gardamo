@@ -1,3 +1,4 @@
+import { authStore } from "@/store/authStore";
 import axiosInstance from "@/utils/axiosInstance";
 import { User } from "@prisma/client";
 
@@ -10,33 +11,42 @@ interface FormData {
     phone_number: number;
 }
 
-export const authRegister = async (data: FormData) => {
-
-    if (!data) return;
 
 
+export const authRegister = async (formData: FormData) => {
+
+    if (!formData) return;
+    const setUser = authStore((state) => state.setUser)
     try {
-        const { confirm_password, ...user } = data;
+        const { confirm_password: _, ...user } = formData;
 
-        const result = await axiosInstance.post("/register", user);
+        const { data } = await axiosInstance.post<User>("/auth/register", user);
 
-        return result.data.user
+        setUser(data)
+
+        return
+
     } catch (error) {
+
         return error
     }
 }
 
 
-export const authLogin = async (data: Pick<FormData, "email" | "password">) => {
-    if (!data) return
+export const authLogin = async (formData: Pick<FormData, "email" | "password">) => {
+
+    if (!formData) return
 
     try {
-        const { email, password } = data
 
-        const result = await axiosInstance.post("/login", { email, password });
+        const { email, password } = formData
 
-        return result.data.user.role
+        const { data } = await axiosInstance.post("/auth/login", { email, password });
+
+        return data
+
     } catch (error) {
-        return error;
+
+        return null;
     }
 }

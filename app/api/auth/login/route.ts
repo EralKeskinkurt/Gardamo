@@ -12,8 +12,6 @@ export async function POST(
         try {
             const { email, password }: Pick<User, "email" | "password"> = await req.json();
 
-            console.log(password, email);
-
             const user = await prisma.user.findUnique({
                 where: { email },
             })
@@ -28,7 +26,7 @@ export async function POST(
                 return Response.json({ message: "Wrong password" }, { status: 404 });
             }
 
-            const token = await jwtSign(user.id, user.role);
+            const token = await jwtSign(user.id, process.env.JWT_SECRET, user.role);
 
             await prisma.user.updateMany({ where: { email: user.email }, data: { refresh_token: token.jwtRefresh } })
 

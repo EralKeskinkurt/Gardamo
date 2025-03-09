@@ -1,13 +1,13 @@
 import { SignJWT, jwtVerify } from "jose";
 
-export const jwtSign = async (idDb: number, roleDb: "USER" | "ADMIN" | "SELLER") => {
-    const secret = new TextEncoder().encode(process.env.JWT_SECRET!);
-    const access_token = await new SignJWT({ idDb, roleDb })
+export const jwtSign = async (idDb: number, JWT_SECRET: string, role: string) => {
+    const secret = new TextEncoder().encode(JWT_SECRET);
+    const access_token = await new SignJWT({ idDb, role })
         .setProtectedHeader({ alg: "HS256" })
         .setIssuedAt()
         .setExpirationTime("2h")
         .sign(secret);
-    const refresh_token = await new SignJWT({ idDb, roleDb })
+    const refresh_token = await new SignJWT({ idDb, role })
         .setProtectedHeader({ alg: "HS256" })
         .setIssuedAt()
         .setExpirationTime("2h")
@@ -16,8 +16,8 @@ export const jwtSign = async (idDb: number, roleDb: "USER" | "ADMIN" | "SELLER")
     return { jwtAccess: access_token, jwtRefresh: refresh_token };
 }
 
-export const verifyToken = async (jwtAccessToken: string) => {
-    const secret = new TextEncoder().encode(process.env.JWT_SECRET!);
+export const verifyToken = async (jwtAccessToken: string, JWT_SECRET: string) => {
+    const secret = new TextEncoder().encode(JWT_SECRET);
     const { payload } = await jwtVerify(jwtAccessToken, secret);
     return payload;
 }

@@ -5,6 +5,8 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { registerSchema } from "@/validations/authSchema";
 import { useState } from "react";
+import { useRouter } from "next/router";
+import { formatPhoneNumber } from "@/lib/formatPhoneNumber";
 
 interface Props {
   handleSetWhichForm: (newWhichForm: string) => void;
@@ -21,17 +23,7 @@ interface FormData {
 
 export default function RegisterForm({ handleSetWhichForm }: Props) {
   const [phone, setPhone] = useState("");
-
-  const formatPhoneNumber = (value: string) => {
-    const numbers = value.replace(/\D/g, ""); // Sadece rakamları al
-    if (numbers.length <= 3) return `${numbers}`;
-    if (numbers.length <= 6)
-      return `${numbers.slice(0, 3)} ${numbers.slice(3)}`;
-    return `${numbers.slice(0, 3)} ${numbers.slice(3, 6)} ${numbers.slice(
-      6,
-      10
-    )}`;
-  };
+  const router = useRouter();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const formatted = formatPhoneNumber(e.target.value);
@@ -47,13 +39,14 @@ export default function RegisterForm({ handleSetWhichForm }: Props) {
     resolver: zodResolver(registerSchema),
   });
 
-  const onSubmit = async (data: FormData) => {
+  const onSubmit = async (formData: FormData) => {
     try {
-      authRegister(data);
+      await authRegister(formData);
+      handleSetWhichForm("");
+      router.push("/");
     } catch (error) {
       return error;
     } finally {
-      handleSetWhichForm("login-form");
       reset();
     }
   };
