@@ -8,7 +8,7 @@ import { useState } from "react";
 import { formatPhoneNumber } from "@/lib/formatPhoneNumber";
 
 interface Props {
-  handleSetWhichForm: (newWhichForm: string) => void;
+  handleSetWhichForm: (_value: string) => void;
 }
 
 interface FormData {

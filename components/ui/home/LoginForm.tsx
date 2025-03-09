@@ -8,7 +8,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 interface Props {
-  handleSetWhichForm: (newWhichForm: string) => void;
+  handleSetWhichForm: (_value: string) => void;
 }
 
 interface FormData {

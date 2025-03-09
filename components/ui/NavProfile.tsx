@@ -18,7 +18,7 @@ export default function NavProfile() {
       if (result) {
         clearUser();
       }
-    } catch {
+    } catch (_error) {
       return;
     }
   };
