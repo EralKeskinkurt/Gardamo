@@ -12,11 +12,13 @@ import LoginForm from "./home/LoginForm";
 import { useState } from "react";
 import RegisterForm from "./home/RegisterForm";
 import Button from "../common/Button";
+import NavProfile from "./NavProfile";
+import { authStore } from "@/store/authStore";
 
 export default function Navbar() {
   const [whichForm, setWhichForm] = useState<string>("");
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-
+  const user = authStore((state) => state.user);
   const handleSetWhichForm = (whichFormData: string) => {
     setWhichForm(whichFormData);
 
@@ -72,26 +74,31 @@ export default function Navbar() {
               <IoIosBasket />
             </Link>
           </li>
-          <li>
-            <Button
-              onClick={() => {
-                handleSetWhichForm("login-form");
-                setIsModalOpen(true);
-              }}
-              className="bg-secondary text-text hover:bg-white border-2 text-sm border-secondary font-medium"
-            >
-              Login / Register
-            </Button>
-            {isModalOpen && (
-              <DefaultModal handleSetIsModalOpen={handleSetIsModalOpen}>
-                {whichForm === "login-form" ? (
-                  <LoginForm handleSetWhichForm={handleSetWhichForm} />
-                ) : (
-                  <RegisterForm handleSetWhichForm={handleSetWhichForm} />
-                )}
-              </DefaultModal>
-            )}
-          </li>
+
+          {user && <NavProfile />}
+
+          {!user && (
+            <li>
+              <Button
+                onClick={() => {
+                  handleSetWhichForm("login-form");
+                  setIsModalOpen(true);
+                }}
+                className="bg-secondary text-text hover:bg-white border-2 text-sm border-secondary font-medium"
+              >
+                Login / Register
+              </Button>
+              {isModalOpen && (
+                <DefaultModal handleSetIsModalOpen={handleSetIsModalOpen}>
+                  {whichForm === "login-form" ? (
+                    <LoginForm handleSetWhichForm={handleSetWhichForm} />
+                  ) : (
+                    <RegisterForm handleSetWhichForm={handleSetWhichForm} />
+                  )}
+                </DefaultModal>
+              )}
+            </li>
+          )}
         </ul>
       </div>
     </nav>

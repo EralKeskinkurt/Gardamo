@@ -15,7 +15,7 @@ export async function GET(
             const token = req.cookies.get("access_token")?.value;
 
             if (!token) {
-                return Response.json({ user: null }, { status: 401 });
+                return Response.json({ user: null }, { status: 201 });
             }
 
             const result = await verifyToken(token, process.env.JWT_SECRET);
@@ -44,7 +44,7 @@ export async function GET(
 
             }
 
-            return Response.json({ message: error }, { status: 500 });
+            return Response.json({ message: "User not found" }, { status: 500 });
 
         }
 

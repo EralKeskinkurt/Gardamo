@@ -5,7 +5,6 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { registerSchema } from "@/validations/authSchema";
 import { useState } from "react";
-import { useRouter } from "next/router";
 import { formatPhoneNumber } from "@/lib/formatPhoneNumber";
 
 interface Props {
@@ -23,7 +22,7 @@ interface FormData {
 
 export default function RegisterForm({ handleSetWhichForm }: Props) {
   const [phone, setPhone] = useState("");
-  const router = useRouter();
+  const [load, setLoad] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const formatted = formatPhoneNumber(e.target.value);
@@ -41,12 +40,13 @@ export default function RegisterForm({ handleSetWhichForm }: Props) {
 
   const onSubmit = async (formData: FormData) => {
     try {
+      setLoad(true);
       await authRegister(formData);
-      handleSetWhichForm("");
-      router.push("/");
     } catch (error) {
       return error;
     } finally {
+      setLoad(false);
+      handleSetWhichForm("");
       reset();
     }
   };
@@ -205,7 +205,7 @@ export default function RegisterForm({ handleSetWhichForm }: Props) {
       </div>
 
       <Button className="bg-accent border-2 transition-all border-accent hover:bg-white rounded-full px-5 py-1.5 ">
-        Register
+        {load ? "..." : "Register"}
       </Button>
       <p className="text-sm mt-2">
         I already have an account;

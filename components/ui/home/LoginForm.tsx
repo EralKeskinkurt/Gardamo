@@ -4,7 +4,7 @@ import { authLogin } from "@/lib/authService";
 import { authStore } from "@/store/authStore";
 import { loginSchema } from "@/validations/authSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 interface Props {
@@ -17,12 +17,13 @@ interface FormData {
 }
 
 export default function LoginForm({ handleSetWhichForm }: Props) {
-  const router = useRouter();
+  const [load, setLoad] = useState(false);
   const setUser = authStore((state) => state.setUser);
 
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<FormData>({
     resolver: zodResolver(loginSchema),
@@ -30,23 +31,18 @@ export default function LoginForm({ handleSetWhichForm }: Props) {
 
   const onSubmit = async (formData: FormData) => {
     try {
+      setLoad(true);
       const result = await authLogin(formData);
 
       if (result.user) {
-        await setUser(result?.user);
-
-        if (result?.user.role === "USER") {
-          router.push("/");
-        } else if (result?.user.role === "SELLER") {
-          router.push("/seller");
-        } else if (result?.user.role === "ADMIN") {
-          router.push("/admin");
-        }
+        setUser(result?.user);
       }
-
-      handleSetWhichForm("");
     } catch (error) {
       return error;
+    } finally {
+      setLoad(false);
+      handleSetWhichForm("");
+      reset();
     }
   };
 
@@ -89,7 +85,7 @@ export default function LoginForm({ handleSetWhichForm }: Props) {
         <input type="checkbox" /> Remember me
       </span>
       <Button className="bg-accent border-2 transition-all border-accent hover:bg-white rounded-full px-5 py-1.5 mt-3">
-        Login
+        {load ? "..." : "Login"}
       </Button>
       <p className="text-sm mt-3">
         Don&apos;t you have an account on Gardamo yet?

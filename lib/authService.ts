@@ -45,8 +45,19 @@ export const authLogin = async (formData: Pick<FormData, "email" | "password">) 
 
         return data
 
-    } catch (error) {
+    } catch {
 
         return null;
     }
+}
+
+
+export const logOut = async () => {
+    try {
+        const result = await axiosInstance.post("/auth/logout")
+        return result;
+    } catch (error) {
+        return error
+    }
+
 }
